@@ -83,13 +83,13 @@
     "yup": "0.32.8"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "node init && react-scripts start",
+    "build": "node init && CI= react-scripts build NODE_ENV=production",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "test:generators": "ts-node --project=./internals/ts-node.tsconfig.json ./internals/testing/test-generators.ts",
     "cypress:open": "cypress open",
-    "start:prod": "npm run build && serve -s build",
+    "start:prod": "node init && npm run build && serve -s build",
     "checkTs": "tsc --noEmit",
     "eslint": "eslint --ext js,ts,tsx",
     "lint": "npm run eslint -- src",
@@ -98,7 +98,7 @@
     "generate": "cross-env TS_NODE_PROJECT='./internals/ts-node.tsconfig.json' plop --plopfile internals/generators/plopfile.ts",
     "prettify": "prettier --write",
     "backend": "json-server --watch db.json --port 5000 --delay=1000 -m ./node_modules/json-server-auth",
-    "start:fullstack": "concurrently \"npm run backend\" \"npm run start\""
+    "start:fullstack": "node init && concurrently \"npm run backend\" \"npm run start\""
   },
   "browserslist": {
     "production": [
